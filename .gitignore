@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+.idea/
+.vscode/
+*.swp
+dataset/energy_data.csv
+!dataset/devices_rules.pl
