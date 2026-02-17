@@ -209,5 +209,4 @@ __marimo__/
 .idea/
 .vscode/
 *.swp
-dataset/energy_data.csv
 !dataset/devices_rules.pl
