@@ -23,3 +23,15 @@ class DeviceKB:
         for soln in self.prolog.query(query):
             return float(soln["P"])
         return 0.0
+
+    def get_sequential_dependencies(self):
+        """
+        Interroga la KB per trovare quali dispositivi devono necessariamente
+        essere eseguiti prima di altri (es. lavatrice prima di asciugatrice).
+        Ritorna una lista di tuple (Prima_Dev, Dopo_Dev).
+        """
+        query = "must_run_before(Prima, Dopo)"
+        dependencies = []
+        for soln in self.prolog.query(query):
+            dependencies.append((soln["Prima"], soln["Dopo"]))
+        return dependencies

@@ -62,7 +62,8 @@ def main():
             
             try:
                 scheduler = EnergyScheduler(kb_path)
-                to_schedule = ["lavatrice", "forno", "auto_elettrica"]
+                # Sostituita l'auto_elettrica con l'asciugatrice per testare la dipendenza temporale
+                to_schedule = ["lavatrice", "asciugatrice", "forno"]
                 print(f"Dispositivi richiesti dall'utente: {to_schedule}")
                 
                 solutions = scheduler.schedule_devices(to_schedule)

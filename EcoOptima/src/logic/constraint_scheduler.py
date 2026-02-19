@@ -20,6 +20,14 @@ class EnergyScheduler:
                 # Non possono essere accesi alla stessa ora
                 self.problem.addConstraint(lambda a, b: a != b, (dev1, dev2))
 
+        # VINCOLO 1.5: Precedenza Sequenziale (dalla KB Prolog)
+        # Se la KB deduce che DevA deve avvenire prima di DevB, limitiamo gli orari.
+        seq_dependencies = self.kb.get_sequential_dependencies()
+        for dev_prima, dev_dopo in seq_dependencies:
+            if dev_prima in devices_to_schedule and dev_dopo in devices_to_schedule:
+                # L'orario di dev_prima deve essere strettamente minore dell'orario di dev_dopo
+                self.problem.addConstraint(lambda t1, t2: t1 < t2, (dev_prima, dev_dopo))
+
         # VINCOLO 2: Potenza massima (Somma carichi < Max Power)
         all_vars = devices_to_schedule
         
